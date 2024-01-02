@@ -4,7 +4,7 @@
  *
  * @format
  */
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
 
@@ -17,6 +17,17 @@ function App(): JSX.Element {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  const saveData = async () => {
+    try {
+      await AsyncStorage.setItem('key', 'value');
+      console.log('Data saved successfully!');
+    } catch (error) {
+      console.error('Error saving data:', error);
+    }
+  };
+
+  saveData();
 
   return (
     <SafeAreaView style={backgroundStyle}>
